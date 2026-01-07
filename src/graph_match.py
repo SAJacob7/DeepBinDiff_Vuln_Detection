@@ -6,7 +6,7 @@ from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 from functools import partial
 import re
 import multiprocessing as mp
-import lapjv
+import lap
 import time
 
 # similarity function cosine as default
@@ -70,7 +70,7 @@ def match(node_in_bin1, node_in_bin2, matches_list, ebd_dic):#, idx_x):
 
 
     t1 = time.time()
-    row_ind, _col_ind, _ = lapjv.lapjv(cost_matrix)
+    row_ind, _col_ind, _ = lap.lapjv(cost_matrix)
     t2 = time.time()
     print("linear assignment time: ", t2-t1)
 

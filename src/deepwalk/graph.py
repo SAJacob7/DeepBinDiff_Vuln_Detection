@@ -7,7 +7,8 @@ from time import time
 from glob import glob
 from six.moves import range, zip, zip_longest
 from six import iterkeys
-from collections import defaultdict, Iterable
+from collections.abc import Iterable
+from collections import defaultdict
 import random
 from random import shuffle
 from itertools import product,permutations

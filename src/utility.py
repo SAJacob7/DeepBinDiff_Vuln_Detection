@@ -1,9 +1,10 @@
 import numpy as np
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 import re
 from scipy import spatial
 import operator
-import lapjv
+import lap
 
 import preprocessing
 
@@ -521,5 +522,5 @@ def linearAssignment(cost_array):
     cost_matrix = np.array([np.array(xi) for xi in cost_array], dtype=np.float32)
     print(cost_matrix)
     print(cost_matrix.shape)
-    row_ind, _col_ind, _ = lapjv.lapjv(cost_matrix)
+    _cost, row_ind, _ = lap.lapjv(cost_matrix)
     return row_ind

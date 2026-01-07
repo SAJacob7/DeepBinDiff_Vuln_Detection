@@ -4,7 +4,9 @@ import os
 import random
 
 import numpy as np
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
 
 import deepbindiff
 
@@ -261,7 +263,7 @@ def buildAndTraining(article, blockBoundaryIndex, insnStartingIndices, indexToCu
 
         # Ops and variables pinned to the CPU because of missing GPU implementation
         with tf.device('/cpu:0'):
-            embeddings = tf.Variable(tf.random_uniform([dic_size, embedding_size], -1.0, 1.0))
+            embeddings = tf.Variable(tf.random.uniform([dic_size, embedding_size], minval=-1.0, maxval=1.0))
 
             # TODO: needs to be reinitilized for every random walk
             # rw_embed = tf.Variable(tf.random_uniform([1, 2 * embedding_size], -1.0, 1.0))

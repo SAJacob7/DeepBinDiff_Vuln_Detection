@@ -107,21 +107,21 @@ def offsetStrMappingGen(cfg1, cfg2, binary1, binary2, mneList):
 
     for func in cfg1.functions.values():
         if func.binary_name == binary1:
-            for offset, strRef in func.string_references(vex_only=True):
+            for offset, strRef in func.string_references():
                 offset = str(offset)
                 #offset = str(hex(offset))[:-1]
                 if offset not in offsetStrMapping:
-                    offsetStrMapping[offset] = ''.join(strRef.split())
+                    offsetStrMapping[offset] = ''.join(strRef.decode(errors='ignore').split())
         elif func.binary_name not in externFuncNamesBin1:
             externFuncNamesBin1.append(func.name)
     
     for func in cfg2.functions.values():
         if func.binary_name == binary2:
-            for offset, strRef in func.string_references(vex_only=True):
+            for offset, strRef in func.string_references():
                 offset = str(offset)
                 #offset = str(hex(offset))[:-1] #[:-1] is to remove the L from say "0x420200L"
                 if offset not in offsetStrMapping:
-                    offsetStrMapping[offset] = ''.join(strRef.split())
+                    offsetStrMapping[offset] = ''.join(strRef.decode(errors='ignore').split())
         elif func.binary_name not in externFuncNamesBin2:
             externFuncNamesBin2.append(func.name)
     # constDic = {}
